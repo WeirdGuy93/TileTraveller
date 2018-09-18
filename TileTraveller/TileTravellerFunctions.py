@@ -36,26 +36,28 @@ def move_the_player_if_valid(direction, x, y) :
     and returns the new position if it is.
     """
 
+    direction = direction.lower()
+
     if direction == "s" :
-        if x == 1 :
-            return False
-        else :
-            x -= 1
-    elif direction == 'n' :
-        if x == 3 :
-            return False
-        else :
-            x += 1
-    elif direction == 'e' :
         if y == 1 :
             return False
         else :
             y -= 1
-    elif direction == "w" :
+    elif direction == "n" :
         if y == 3 :
             return False
         else :
             y += 1
+    elif direction == "e" :
+        if x == 1 :
+            return False
+        else :
+            x -= 1
+    elif direction == "w" :
+        if x == 3 :
+            return False
+        else :
+            x += 1
 
     return [x,y]
 

@@ -27,6 +27,7 @@ while x != 3 or y != 1:
         if len(avail_dir) > i+1 :
             print("or", end=" ")
     print()
+    
     movement = input("Direction: ")
 
     if movement.lower() == "s" :

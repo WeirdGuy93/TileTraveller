@@ -1,0 +1,10 @@
+1.
+    Longer code is always harder to read, it's easy to read
+    but unnecessarily long.
+
+    If we make a function for each step we're dividing it into "chapters",
+    making the main program much easier to read and each step is more
+    straight forward.
+    The function makes the code inside them easier to read because they
+    have a simpler objective
+

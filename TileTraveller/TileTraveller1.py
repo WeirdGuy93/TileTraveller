@@ -1,3 +1,13 @@
+#Algorithm
+# while not finished
+#     print directions
+#     get input
+#     validate input
+#     update coords
+#     check if finished
+# Yay!
+
+
 x = 1
 y = 1
 

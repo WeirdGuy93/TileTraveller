@@ -1,9 +1,0 @@
-m_str = input('Input m: ')  # do not change this line
-# change m_str to a float
-# remember you need c
-# e = 
-print("Insert the objects mass: ")
-mass = inout()
-
-int(mass)
-print("e =", e)  # do not change this line

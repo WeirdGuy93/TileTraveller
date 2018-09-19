@@ -26,6 +26,8 @@
 x = 1
 y = 1
 
+invalid = False
+
 while x != 3 or y != 1:
 
     south = True
@@ -48,33 +50,37 @@ while x != 3 or y != 1:
 
 
     avail_dir = []
-    if south :
-        avail_dir.append("(S)outh")    
     if north :
         avail_dir.append("(N)orth")
     if east :
         avail_dir.append("(E)ast")
+    if south :
+        avail_dir.append("(S)outh")
     if west :
-        avail_dir.append("(W)est")
-
-    print("You can travel:", end=" ")
-    for i in range(len(avail_dir)) :
-        print(avail_dir[i], end=" ")
-        if len(avail_dir) > i+1 :
-            print("or", end=" ")
-    print()
+        avail_dir.append("(W)est")    
     
+    if not invalid :
+        print("You can travel:", end=" ")
+        for i in range(len(avail_dir)) :
+            print(avail_dir[i], end="")
+            if len(avail_dir) > i+1 :
+                print(" or", end=" ")
+            else :
+                print(".")
+        
     movement = input("Direction: ").lower()
 
-    if movement == "s" and south :
-        y -= 1
-    elif movement == "n" and north:
+    invalid = False
+
+    if movement == "n" and north:
         y += 1
     elif movement == "e" and east:
         x += 1
     elif movement == "w" and west:
         x -= 1
+    elif movement == "s" and south :
+        y -= 1
     else :
         print("Not a valid direction!")
-
+        invalid = True
 print("Victory!")

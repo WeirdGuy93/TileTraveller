@@ -1,4 +1,4 @@
-def available_directions(x,y) :
+def get_available_directions(x,y) :
     """
     In: x and y
     Out: available directions
@@ -35,23 +35,26 @@ def get_directions_string(x,y) :
     This function gets the available directions from the function: 
     "available_directions" and returns a nicely readable string
     """
-    avail_dir = available_directions(x,y)
+    avail_dir = get_available_directions(x,y)
     
     direction_string = "You can travel: "
+    directions = []
 
     if avail_dir[0] :
-        avail_dir.append("(N)orth ")
-    if avail_dir[1] :
-        avail_dir.append("(S)outh ")
+        directions.append("(N)orth")
     if avail_dir[2] :
-        avail_dir.append("(E)ast ")
+        directions.append("(E)ast")
+    if avail_dir[1] :
+        directions.append("(S)outh")
     if avail_dir[3] :
-        avail_dir.append("(W)est ")
+        directions.append("(W)est")
 
-    for i in range(len(avail_dir)) :
-        direction_string += avail_dir[i] + " "
-        if len(avail_dir) > i+1 :
-            direction_string += "or "
+    for i in range(len(directions)) :
+        direction_string += directions[i] + ""
+        if len(directions) > i+1 :
+            direction_string += " or "
+        else :
+            direction_string += "."
     return direction_string
 
 def move_the_player_if_valid(direction, x, y) :
@@ -67,7 +70,7 @@ def move_the_player_if_valid(direction, x, y) :
 
     direction = direction.lower()
 
-    avail_dir = available_directions(x,y)
+    avail_dir = get_available_directions(x,y)
 
     if direction == "n" and avail_dir[0] :
         y += 1
@@ -79,6 +82,8 @@ def move_the_player_if_valid(direction, x, y) :
         x -= 1
     else :
         print("Not a valid direction!")
+        new_direction = input("Direction: ")
+        [x,y] = move_the_player_if_valid(new_direction, x, y)
 
     return [x,y]
 

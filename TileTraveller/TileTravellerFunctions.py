@@ -48,7 +48,7 @@ def move_the_player_if_valid(direction, x, y) :
     elif direction == "w" and avail_dir[3] :
         x -= 1
     else :
-        return
+        print("Not a valid direction!")
 
     return [x,y]
 

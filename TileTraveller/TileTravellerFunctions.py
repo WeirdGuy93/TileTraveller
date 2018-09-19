@@ -1,9 +1,39 @@
-def get_available_directions(x,y) :
+def available_directions(x,y) :
+    """
+    In: x and y
+    Out: available directions
+
+    This function is only used by other functions to get
+    the direction the player is allowed to move in.
+    """
+    south = True
+    north = True
+    east = True
+    west = True
+
+    if y == 1 or (x == 3 and y == 2) :
+        east, west = False, False
+    if y == 3:
+        north = False
+    if y == 2 and x == 2 :
+        north, east = False, False
+    if y == 1 or (x == 2 and y == 3) :
+        south = False
+    if x == 1 :
+        west = False
+    if x == 3 :
+        east = False
+
+    avail_dir = [north, south, east, west]
+	
+    return avail_dir
+
+def get_directions_string(x,y) :
     """ 
     In: x and y position
-    This functioin takes in the players position on the x and y axis
-    and returns a string that tells him which directions are available
     Out: string with available direction
+    This function gets the available directions from the function: 
+    "available_directions" and returns a nicely readable string
     """
     avail_dir = available_directions(x,y)
     
@@ -29,10 +59,10 @@ def move_the_player_if_valid(direction, x, y) :
     In: string with desired direction and the current 
     position of the player
     
-    Out: New grids or an error
+    Out: x and y (prints out if the desired direction is unavailable)
 
     This function checks if the player chose a valid direction
-    and returns the new position if it is.
+    and returns the position of the player.
     """
 
     direction = direction.lower()
@@ -64,27 +94,3 @@ def check_if_game_is_won(x,y) :
         return True
     else :
         return False
-
-def available_directions(x,y) :
-    
-    south = True
-    north = True
-    east = True
-    west = True
-
-    if y == 1 or (x == 3 and y == 2) :
-        east, west = False, False
-    if y == 3:
-        north = False
-    if y == 2 and x == 2 :
-        north, east = False, False
-    if y == 1 or (x == 2 and y == 3) :
-        south = False
-    if x == 1 :
-        west = False
-    if x == 3 :
-        east = False
-
-    avail_dir = [north, south, east, west]
-	
-    return avail_dir

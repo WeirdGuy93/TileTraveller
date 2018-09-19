@@ -1,10 +1,71 @@
-def get_available_directioins(x,y) :
+def get_available_directions(x,y) :
     """ 
     In: x and y position
     This functioin takes in the players position on the x and y axis
     and returns a string that tells him which directions are available
     Out: string with available direction
     """
+    avail_dir = available_directions(x,y)
+    
+    direction_string = "You can travel: "
+
+    if avail_dir[0] :
+        avail_dir.append("(N)orth ")
+    if avail_dir[1] :
+        avail_dir.append("(S)outh ")
+    if avail_dir[2] :
+        avail_dir.append("(E)ast ")
+    if avail_dir[3] :
+        avail_dir.append("(W)est ")
+
+    for i in range(len(avail_dir)) :
+        direction_string += avail_dir[i] + " "
+        if len(avail_dir) > i+1 :
+            direction_string += "or "
+    return direction_string
+
+def move_the_player_if_valid(direction, x, y) :
+    """
+    In: string with desired direction and the current 
+    position of the player
+    
+    Out: New grids or an error
+
+    This function checks if the player chose a valid direction
+    and returns the new position if it is.
+    """
+
+    direction = direction.lower()
+
+    avail_dir = available_directions(x,y)
+
+    if direction == "n" and avail_dir[0] :
+        y += 1
+    elif direction == "s" and avail_dir[1] :
+        y -= 1
+    elif direction == "e" and avail_dir[2] :
+        x += 1
+    elif direction == "w" and avail_dir[3] :
+        x -= 1
+    else :
+        return
+
+    return [x,y]
+
+def check_if_game_is_won(x,y) :
+    """
+    In: position of the player
+    Out: A boolean value
+
+    This function checks if the game is won!
+    """
+
+    if x == 3 and y == 1 :
+        return True
+    else :
+        return False
+
+def available_directions(x,y) :
     
     south = True
     north = True
@@ -24,70 +85,6 @@ def get_available_directioins(x,y) :
     if x == 3 :
         east = False
 
-    avail_dir = []
-    
-    direction_string = "You can travel: "
-
-    if north :
-        avail_dir.append("(N)orth ")
-    if south :
-        avail_dir.append("(S)outh ")
-    if east :
-        avail_dir.append("(E)ast ")
-    if west :
-        avail_dir.append("(W)est ")
-
-    for i in range(0, len(avail_dir)) :
-        direction_string += avail_dir[i] + " "
-        if len(avail_dir) > i+1 :
-            direction_string += "or "
-    return direction_string
-
-def move_the_player_if_valid(direction, x, y) :
-    """
-    In: string with desired direction and the current 
-    position of the player
-    
-    Out: New grids or an error
-
-    This function checks if the player chose a valid direction
-    and returns the new position if it is.
-    """
-
-    direction = direction.lower()
-
-    if direction == "s" :
-        if y == 1 :
-            return False
-        else :
-            y -= 1
-    elif direction == "n" :
-        if y == 3 :
-            return False
-        else :
-            y += 1
-    elif direction == "e" :
-        if x == 3 :
-            return False
-        else :
-            x += 1
-    elif direction == "w" :
-        if x == 3 :
-            return False
-        else :
-            x -= 1
-
-    return [x,y]
-
-def check_if_game_is_won(x,y) :
-    """
-    In: position of the player
-    Out: A boolean value
-
-    This function checks if the game is won!
-    """
-
-    if x == 3 and y == 1 :
-        return True
-    else :
-        return False
+    avail_dir = [north, south, east, west]
+	
+    return avail_dir
